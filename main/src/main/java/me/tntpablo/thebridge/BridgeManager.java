@@ -9,6 +9,7 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -28,15 +29,21 @@ public class BridgeManager {
 	public int countdown = 0;
 	BukkitTask task;
 	private int gamePhase = 0;
-
 	// false si el juego no ha empezado, true si ya empezo
 	private boolean gameState = false;
 	private int scoreT1 = 0, scoreT2 = 0;
-
+	Team team1, team2;
 	public BridgeManager(Main plugin) {
 		this.plugin = plugin;
+		loadConfig();
 	}
+	public void loadConfig(){
+		FileConfiguration  config;
+		try{
+			config = plugin.bridgeConfig.getConfig();
 
+		}
+	}
 	public void setMaxPlayers(int n) {
 		maxPlayers = n;
 	}
