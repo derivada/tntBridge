@@ -1,0 +1,16 @@
+general-spawn: 0.5 103 0.5 0 0
+team1-spawn: 22.5 97.0 30.5 90.0 0.0
+team2-spawn: -21.5 97.0 30.5 -90.0 0.0
+starting-time: 15
+match-time: 45
+goals-to-win: 5
+team1-color: RED
+team2-color: BLUE
+death-height: 82.0
+X1: -18.5 
+Y1: 83.5
+Z1: 20.5
+X2: 18.5
+Y2: 98.5 
+Z2: 40.5
+

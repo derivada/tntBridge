@@ -1,0 +1,8 @@
+main: me.tntpablo.thebridge.Main
+name: TheBridge
+version: 1.0
+author: tntpablo
+api-version: 1.8
+commands:
+  bridge:
+     description: Comando principal
