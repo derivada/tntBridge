@@ -26,6 +26,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import me.tntpablo.thebridge.BridgeManager;
 import me.tntpablo.thebridge.Main;
+import me.tntpablo.thebridge.Team;
 import me.tntpablo.thebridge.Utils;
 
 public class BridgeListener implements Listener {
@@ -65,14 +66,9 @@ public class BridgeListener implements Listener {
 					}
 
 					goalDelay.put(p, System.currentTimeMillis());
-
-					if (bridge.players.get(e.getPlayer()) == 1)
-						bridge.goal(1);
-					if (bridge.players.get(e.getPlayer()) == 2)
-						bridge.goal(2);
-
+					Team team = bridge.players.get(p);
+					bridge.goal(team);
 			}
-
 		}
 	}
 
@@ -139,7 +135,7 @@ public class BridgeListener implements Listener {
 					moveDelay.put(p, System.currentTimeMillis());
 
 					if (e.getPlayer().getLocation().getY() < plugin.bridgeConfig.getConfig().getInt("death-height")) {
-						bridge.death(p);
+						bridge.respawn(p);
 						p.sendMessage(Utils.chat("Has muerto por caida!"));
 					}
 				}
@@ -174,7 +170,7 @@ public class BridgeListener implements Listener {
 			if (bridge.getGamePhase() == 2) {
 				// sacadisimo de internet, es un lambda que revive al jugador en 2 ticks
 				Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> p.spigot().respawn(), 2);
-				bridge.death(p);
+				bridge.respawn(p);
 			}
 	}
 

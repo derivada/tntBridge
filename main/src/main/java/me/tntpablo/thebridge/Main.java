@@ -1,12 +1,17 @@
 package me.tntpablo.thebridge;
 
+import java.util.logging.Logger;
+
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import me.tntpablo.thebridge.files.DataManager;
 import me.tntpablo.thebridge.listeners.BlockSaverListener;
 import me.tntpablo.thebridge.listeners.BridgeListener;
 
 public class Main extends JavaPlugin {
 
+	Logger log = Bukkit.getLogger();
 	public BlockSaver blockSaver;
 	public BlockSaverListener blockSaverListener;
 	public DataManager bridgeConfig = new DataManager(this, "bridgeconfig.yml");

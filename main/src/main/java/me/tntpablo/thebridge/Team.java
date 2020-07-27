@@ -16,8 +16,8 @@ public enum Team {
 
     private int ID;
     private ChatColor COLOR;
-    private String NAME;
-    private String NOMBRE;
+    public String NAME;
+    public String NOMBRE;
 
     Team(final int ID, ChatColor color, String name, String nombre) {
         this.ID = ID;
@@ -30,10 +30,16 @@ public enum Team {
         return ID;
     }
 
-    public ChatColor getColor() {
+    public ChatColor getChatColor(){
         return COLOR;
     }
 
+    public String getNameMsg() {
+        return "&" + Integer.toHexString(ID) + NAME.substring(0,1)+NAME.substring(1, NAME.length()).toLowerCase();
+    }
+    public String getNombreMsg() {
+        return "&" + Integer.toHexString(ID) + NOMBRE.substring(0,1)+NOMBRE.substring(1, NOMBRE.length()).toLowerCase();
+    }
     public String getName() {
         return NAME;
     }
@@ -41,4 +47,9 @@ public enum Team {
     public String getNombre() {
         return NOMBRE;
     }
+
+    public String getEnumName() {
+        return NAME.toUpperCase().replace(" ", "_");
+    }
+
 }
