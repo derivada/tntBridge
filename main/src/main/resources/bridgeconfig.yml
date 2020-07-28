@@ -1,21 +1,22 @@
-bounding-box:
-  corner-1:
-    x: -18.5
-    y: 83.5
-    z: 20.5
-  corner-2:
-    x: 18.5
-    y: 98.5
-    z: 40.5
+#General settings:
+starting-time: 15
+waiting-time: 5
+match-time: 60
+goals-to-win: 5
+team1name: RED
+team2name: BLUE
+death-height: 82.0
+
+# Spawn Locations:
 team1-spawn: 
   x: 22.5 
-  y: 97.0 
+  y: 98.0 
   z: 30.5 
   yaw: 90.0 
   pitch: 0.0
 team2-spawn: 
   x: -21.5 
-  y: 97.0 
+  y: 98.0 
   z: 30.5 
   yaw: -90.0 
   pitch: 0.0
@@ -25,11 +26,32 @@ general-spawn:
   z: 30.5 
   yaw: -90.0 
   pitch: 0.0
-starting-time: 15
-match-time: 60
-goals-to-win: 5
-team1name: RED
-team2name: BLUE
-death-height: 82.0
 
-
+# Bounding boxes:
+bridge:
+  corner1:
+    x: -18.0
+    y: 83.0
+    z: 21.0
+  corner2:
+    x: 18.0
+    y: 98.0
+    z: 40.0
+cage-team1:
+  corner1:
+    x: -20.0
+    y: 99.0
+    z: 32.0
+  corner2:
+    x: -24.0
+    y: 95.0
+    z: 28.0
+cage-team2:
+  corner1:
+    x: 24.0
+    y: 99.0
+    z: 32.0
+  corner2:
+    x: 20.0
+    y: 95.0
+    z: 28.0

@@ -42,6 +42,7 @@ public class BridgeTab implements TabCompleter {
 		subcommandList.add("stop");
 		subcommandList.add("reset");
 		subcommandList.add("forcestart");
+		subcommandList.add("cagetest");
 
 		// ...
 	}

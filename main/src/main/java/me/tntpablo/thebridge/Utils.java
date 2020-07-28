@@ -7,7 +7,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class Utils {
-
+	public static String error(String msg){
+		return ChatColor.translateAlternateColorCodes('&', "&l&a[ &fThe &2&lBridge&l&a ]&r&f &4&l ERROR: &r&f" + msg);
+	}
 	public static String chat(String msg) {
 		// Mensajes generales
 		return ChatColor.translateAlternateColorCodes('&', "&l&a[ &fThe &2&lBridge&l&a ]&r&f " + msg);

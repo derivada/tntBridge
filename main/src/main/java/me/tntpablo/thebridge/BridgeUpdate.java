@@ -22,20 +22,27 @@ public class BridgeUpdate extends BukkitRunnable {
 	public void run() {
 		
 		// Cuenta atras, detectar scores, cambiar estado de exit
-		if (bridge.countdown == 0 && bridge.getGamePhase() == 1) {
+
+		
+		// Pasar a la fase de partida
+		if (bridge.countdown == 0 && bridge.getGamePhase() == GameState.COUNTDOWN) {
 			bridge.gameStart();
 		}
-		if (bridge.countdown == 0 && bridge.getGamePhase() == 2) {
+		
+		// Pasar al final de partida
+		if (bridge.countdown == 0 && bridge.getGamePhase() == GameState.RUNNING) {
 			bridge.stop();
 		}
 
-		if (Utils.timeReminder(bridge.countdown) != null) {
 
+		// Feedback al jugador de la cuenta atras
+		if (Utils.timeReminder(bridge.countdown) != null) {
 				bridge.msgAll(("Quedan " + Utils.timeReminder(bridge.countdown) + bridge.countdown
 						+ " &fsegundos para " + bridge.getPhaseDescription()));
 
 		}
 		bridge.countdown--;
+
 		for(Player p: bridge.players.keySet()){
 			bridge.updateScoreboard(p);
 		}

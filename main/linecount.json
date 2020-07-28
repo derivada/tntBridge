@@ -1,0 +1,380 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "c:\\visualstudio-workspace\\tntBridge",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2020-07-28 21:08:39",
+            "filesum": 57,
+            "codesum": 1544,
+            "commentsum": 82,
+            "blanksum": 260,
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 44,
+                    "comment": 0,
+                    "filename": "main\\.classpath"
+                },
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "main\\.project"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 2,
+                    "filename": "main\\.settings\\org.eclipse.core.resources.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "main\\.settings\\org.eclipse.jdt.apt.core.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "main\\.settings\\org.eclipse.jdt.core.prefs"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "main\\.settings\\org.eclipse.m2e.core.prefs"
+                },
+                {
+                    "blank": 9,
+                    "code": 71,
+                    "comment": 4,
+                    "filename": "main\\pom.xml"
+                },
+                {
+                    "blank": 13,
+                    "code": 51,
+                    "comment": 3,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\BlockSaver.java"
+                },
+                {
+                    "blank": 26,
+                    "code": 132,
+                    "comment": 5,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\BoundingBox.java"
+                },
+                {
+                    "blank": 8,
+                    "code": 53,
+                    "comment": 6,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\BridgeCmd.java"
+                },
+                {
+                    "blank": 79,
+                    "code": 420,
+                    "comment": 27,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\BridgeManager.java"
+                },
+                {
+                    "blank": 12,
+                    "code": 34,
+                    "comment": 4,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\BridgeTab.java"
+                },
+                {
+                    "blank": 13,
+                    "code": 29,
+                    "comment": 4,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\BridgeUpdate.java"
+                },
+                {
+                    "blank": 20,
+                    "code": 57,
+                    "comment": 9,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\files\\DataManager.java"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\GameState.java"
+                },
+                {
+                    "blank": 6,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\GiveArrow.java"
+                },
+                {
+                    "blank": 12,
+                    "code": 50,
+                    "comment": 1,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\listeners\\BlockSaverListener.java"
+                },
+                {
+                    "blank": 28,
+                    "code": 166,
+                    "comment": 4,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\listeners\\BridgeListener.java"
+                },
+                {
+                    "blank": 9,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\Main.java"
+                },
+                {
+                    "blank": 3,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\SupressWarnings.java"
+                },
+                {
+                    "blank": 8,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\Team.java"
+                },
+                {
+                    "blank": 8,
+                    "code": 66,
+                    "comment": 7,
+                    "filename": "main\\src\\main\\java\\me\\tntpablo\\thebridge\\Utils.java"
+                },
+                {
+                    "blank": 0,
+                    "code": 61,
+                    "comment": 0,
+                    "filename": "main\\src\\main\\resources\\bridgeconfig.yml"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "main\\src\\main\\resources\\plugin.yml"
+                },
+                {
+                    "blank": 3,
+                    "code": 11,
+                    "comment": 6,
+                    "filename": "main\\src\\test\\java\\e\\AppTest.java"
+                },
+                {
+                    "blank": 0,
+                    "code": 61,
+                    "comment": 0,
+                    "filename": "main\\target\\classes\\bridgeconfig.yml"
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\BlockSaver.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\BoundingBox.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\BridgeCmd.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\BridgeManager$1.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\BridgeManager.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\BridgeTab.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\BridgeUpdate.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\files\\DataManager.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\GameState.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\GiveArrow.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\listeners\\BlockSaverListener.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\listeners\\BridgeListener$1.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\listeners\\BridgeListener$2.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\listeners\\BridgeListener$3.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\listeners\\BridgeListener.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\Main.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\SupressWarnings.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\Team.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\classes\\me\\tntpablo\\thebridge\\Utils.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "main\\target\\classes\\plugin.yml"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "main\\target\\maven-archiver\\pom.properties"
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "main\\target\\maven-status\\maven-compiler-plugin\\compile\\default-compile\\createdFiles.lst"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "main\\target\\maven-status\\maven-compiler-plugin\\compile\\default-compile\\inputFiles.lst"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "main\\target\\maven-status\\maven-compiler-plugin\\testCompile\\default-testCompile\\createdFiles.lst"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "main\\target\\maven-status\\maven-compiler-plugin\\testCompile\\default-testCompile\\inputFiles.lst"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "main\\target\\surefire-reports\\e.AppTest.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "main\\target\\surefire-reports\\TEST-e.AppTest.xml"
+                },
+                {
+                    "filename": "main\\target\\test-classes\\e\\AppTest.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "main\\target\\tntBridge-1.0.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 2,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "README.md"
+                }
+            ]
+        }
+    ]
+}

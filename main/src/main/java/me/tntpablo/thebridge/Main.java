@@ -21,6 +21,7 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+		log.info("CARGANDO PLUGIN TEST TEST TEST MARICON MARICON MARICON");
 		commandManager();
 		blockSaverListener = new BlockSaverListener(this, bridgeManager);
 		blockSaver = new BlockSaver(this, bridgeManager);

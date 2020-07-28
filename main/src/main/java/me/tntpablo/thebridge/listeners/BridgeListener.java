@@ -25,6 +25,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.tntpablo.thebridge.BridgeManager;
+import me.tntpablo.thebridge.GameState;
 import me.tntpablo.thebridge.Main;
 import me.tntpablo.thebridge.Team;
 import me.tntpablo.thebridge.Utils;
@@ -59,15 +60,16 @@ public class BridgeListener implements Listener {
 		Player p = e.getPlayer();
 		if (e.getCause() == TeleportCause.END_PORTAL) {
 
-			if (bridge.players.containsKey(p) || (goalDelay.get(p) != null && (goalDelay.get(p) + 1000) >= System.currentTimeMillis())) {
-					e.setCancelled(true);
-					if (goalDelay.get(p) != null && (goalDelay.get(p) + 1000) >= System.currentTimeMillis()) {
-						return;
-					}
+			if (bridge.players.containsKey(p)
+					|| (goalDelay.get(p) != null && (goalDelay.get(p) + 1000) >= System.currentTimeMillis())) {
+				e.setCancelled(true);
+				if (goalDelay.get(p) != null && (goalDelay.get(p) + 1000) >= System.currentTimeMillis()) {
+					return;
+				}
 
-					goalDelay.put(p, System.currentTimeMillis());
-					Team team = bridge.players.get(p);
-					bridge.goal(team);
+				goalDelay.put(p, System.currentTimeMillis());
+				Team team = bridge.players.get(p);
+				bridge.goal(team);
 			}
 		}
 	}
@@ -80,7 +82,7 @@ public class BridgeListener implements Listener {
 				Bukkit.broadcastMessage(pl.getName());
 			}
 			if (bridge.players.containsKey(p)) {
-				if (bridge.getGamePhase() == 2) {
+				if (bridge.getGamePhase() == GameState.RUNNING) {
 					// Nuevo thread que espera 3 segundos y despues le da una flecha al jugador
 					// asociado
 					new BukkitRunnable() {
@@ -113,7 +115,7 @@ public class BridgeListener implements Listener {
 	@EventHandler
 	public void onArrowLand(ProjectileHitEvent e) {
 		if (e.getEntityType() == EntityType.ARROW) {
-			if (bridge.getGamePhase() == 2) {
+			if (bridge.getGamePhase() == GameState.RUNNING) {
 				new BukkitRunnable() {
 
 					@Override
@@ -131,7 +133,7 @@ public class BridgeListener implements Listener {
 		Player p = e.getPlayer();
 		if (moveDelay.get(p) == null || (moveDelay.get(p) + 1000) < System.currentTimeMillis())
 			if (bridge.players.keySet().contains(p))
-				if (bridge.getGamePhase() == 2) {
+				if (bridge.getGamePhase() == GameState.RUNNING) {
 					moveDelay.put(p, System.currentTimeMillis());
 
 					if (e.getPlayer().getLocation().getY() < plugin.bridgeConfig.getConfig().getInt("death-height")) {
@@ -140,34 +142,35 @@ public class BridgeListener implements Listener {
 					}
 				}
 	}
-	
+
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent e) {
 		Player p = e.getPlayer();
-		if (bridge.players.keySet().contains(p))
-			if (bridge.getGamePhase() == 2)
-				// Mi mayor obra maestra
-				if (!(plugin.bridgeConfig.getConfig().getInt("X1") <= e.getBlock().getLocation().getX()
-						&& plugin.bridgeConfig.getConfig().getInt("Y1") <= e.getBlock().getLocation().getY()
-						&& plugin.bridgeConfig.getConfig().getInt("Z1") <= e.getBlock().getLocation().getZ()
-						&& plugin.bridgeConfig.getConfig().getInt("X2") >= e.getBlock().getLocation().getX()
-						&& plugin.bridgeConfig.getConfig().getInt("Y2") >= e.getBlock().getLocation().getY()
-						&& plugin.bridgeConfig.getConfig().getInt("Z2") >= e.getBlock().getLocation().getZ()))
-					e.setCancelled(true);
-	}
+		if (!bridge.bridge.isInside(e.getBlock().getLocation())) {
+			Bukkit.broadcastMessage("OUTSIDE BRIDGE BOUNDING BOX");
+			e.setCancelled(true);
+			return;
+		}
+		Bukkit.broadcastMessage("INSIDE BRIDGE BOUNDING BOX");
+		// TODO: meterlo dentro de esto cuando acabe de testear
+		if (bridge.players.keySet().contains(p)) 
+			if (bridge.getGamePhase() == GameState.RUNNING){
+				
+			} 
+		}
 
 	@EventHandler
 	public void onItemDrop(PlayerDropItemEvent e) {
 		Player p = e.getPlayer();
 		if (bridge.players.keySet().contains(p))
-			if (bridge.getGamePhase() == 2)
+			if (bridge.getGamePhase() == GameState.RUNNING)
 				e.setCancelled(true);
 	}
 
 	public void onDeath(PlayerDeathEvent e) {
 		Player p = e.getEntity();
 		if (bridge.players.keySet().contains(p))
-			if (bridge.getGamePhase() == 2) {
+			if (bridge.getGamePhase() == GameState.RUNNING) {
 				// sacadisimo de internet, es un lambda que revive al jugador en 2 ticks
 				Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> p.spigot().respawn(), 2);
 				bridge.respawn(p);
@@ -178,17 +181,17 @@ public class BridgeListener implements Listener {
 	public void onBlockBreak(BlockBreakEvent e) {
 		Player p = e.getPlayer();
 		if (bridge.players.keySet().contains(p))
-			if (bridge.getGamePhase() == 2)
+			if (bridge.getGamePhase() == GameState.RUNNING)
 				if (e.getBlock().getType() == Material.STAINED_CLAY)
 					e.setCancelled(true);
 
 	}
 
 	@EventHandler
-	public void onPlayerLeaving(PlayerQuitEvent e){
+	public void onPlayerLeaving(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
-		if(bridge.players.keySet().contains(p)){
-			if(bridge.getGamePhase()==2 || bridge.getGamePhase()==1)
+		if (bridge.players.keySet().contains(p)) {
+			if (bridge.getGamePhase() == GameState.RUNNING || bridge.getGamePhase() == GameState.WAITING)
 				bridge.checkList();
 		}
 	}
