@@ -16,12 +16,15 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
+
+import me.tntpablo.thebridge.files.DataManager;
 
 public class BridgeManager {
 
@@ -40,7 +43,7 @@ public class BridgeManager {
 	private Team team1, team2;
 	private Location spawnT1, spawnT2, spawnG;
 	public BoundingBox bridge, cageT1, cageT2;
-	World bridgeWorld;
+	public World bridgeWorld;
 
 	public BridgeManager(Main plugin) {
 		this.plugin = plugin;
@@ -51,7 +54,17 @@ public class BridgeManager {
 	}
 
 	public void loadConfig() {
-		FileConfiguration config = plugin.bridgeConfig.getConfig();
+
+		FileConfiguration config = null;
+
+		try{
+			plugin.bridgeConfig = new DataManager(plugin, "bridgeconfig.yml");
+			config = plugin.bridgeConfig.getConfig();
+		}
+		catch(NullPointerException e){
+			e.printStackTrace();
+			return;
+		}
 		// TODO: Aprender a loggear los errores a la consola y mover esto a una clase
 		// separada (BridgeConfig) con las respectivas variables de instancia que se
 		// llame desde main
@@ -103,13 +116,13 @@ public class BridgeManager {
 			spawnT1 = new Location(null, config.getDouble("team1-spawn.x"), config.getDouble("team1-spawn.y"),
 					config.getDouble("team1-spawn.z"), (float) config.getDouble("team1-spawn.yaw"),
 					(float) config.getDouble("team1-spawn.pitch"));
-			this.plugin.log.log(Level.FINE, "Cargando locs, T1 cargada!");
+			this.plugin.logger.log(Level.FINE, "Cargando locs, T1 cargada!");
 			// Bukkit.broadcastMessage("CARGA LOC SPAWN 1: " + spawnT1.toString());
 
 			spawnT2 = new Location(null, config.getDouble("team2-spawn.x"), config.getDouble("team2-spawn.y"),
 					config.getDouble("team2-spawn.z"), (float) config.getDouble("team2-spawn.yaw"),
 					(float) config.getDouble("team2-spawn.pitch"));
-			this.plugin.log.log(Level.FINE, "Cargando locs, T2 cargada!");
+			this.plugin.logger.log(Level.FINE, "Cargando locs, T2 cargada!");
 			// Bukkit.broadcastMessage("CARGA LOC SPAWN 2: " + spawnT2.toString());
 
 			spawnG = new Location(null, config.getDouble("general-spawn.x"), config.getDouble("general-spawn.y"),
@@ -182,7 +195,8 @@ public class BridgeManager {
 		}
 
 		if (players.size() != maxPlayers) {
-			// Se llamara sendMsg con true cuando se use /bridge start con un numero de jugador valido (par), esto aun no se implemento (TODO)
+			// Se llamara sendMsg con true cuando se use /bridge start con un numero de
+			// jugador valido (par), esto aun no se implemento (TODO)
 			if (sendMsg == true) {
 				msgAll("Se necesitan &b" + maxPlayers + " &fjugadores para iniciar la partida!");
 			}
@@ -250,7 +264,7 @@ public class BridgeManager {
 			return;
 		}
 		task.cancel();
-		//Bukkit.broadcastMessage("CANCELLED TASK");
+		// Bukkit.broadcastMessage("CANCELLED TASK");
 
 		new BukkitRunnable() {
 			@Override
@@ -275,7 +289,7 @@ public class BridgeManager {
 			}
 
 		}.runTaskLater(this.plugin, 5);
-		//Bukkit.broadcastMessage("STOP EXIT: " + this.getGamePhase().toString());
+		// Bukkit.broadcastMessage("STOP EXIT: " + this.getGamePhase().toString());
 
 	}
 
@@ -306,6 +320,8 @@ public class BridgeManager {
 	}
 
 	public void respawn(Player p) {
+		p.removePotionEffect(PotionEffectType.ABSORPTION);
+		Utils.heal(p);
 		if (players.get(p) == team1) {
 			spawnT1.setWorld(p.getWorld());
 			p.teleport(spawnT1);

@@ -5,23 +5,27 @@ import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityShootBowEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.tntpablo.thebridge.BridgeManager;
@@ -171,14 +175,22 @@ public class BridgeListener implements Listener {
 				e.setCancelled(true);
 	}
 
-	public void onDeath(PlayerDeathEvent e) {
-		Player p = e.getEntity();
-		if (bridge.players.keySet().contains(p))
-			if (bridge.getGamePhase() == GamePhase.RUNNING) {
-				// sacadisimo de internet, es un lambda que revive al jugador en 2 ticks
-				Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> p.spigot().respawn(), 2);
-				bridge.respawn(p);
-			}
+	// TODO: Acabar esto
+	@EventHandler
+	public void onDeath(EntityDamageByEntityEvent e) {
+		if (e.getEntity() instanceof Player) {
+			Player p = (Player) e.getEntity();
+			if (bridge.players.keySet().contains(p))
+				if (bridge.getGamePhase() == GamePhase.RUNNING) {
+					// Comprobar si va a morir por ese hit:
+					if (p.getHealth() < e.getDamage()) {
+						e.setCancelled(true);
+						Bukkit.broadcastMessage("TEST");
+						p.playSound(p.getLocation(), Sound.HURT_FLESH, 1f, 1f);
+						bridge.respawn(p);
+					}
+				}
+		}
 	}
 
 	@EventHandler
@@ -187,6 +199,35 @@ public class BridgeListener implements Listener {
 		if (bridge.players.keySet().contains(p)) {
 			if (!(bridge.getGamePhase() != GamePhase.OFFLINE))
 				bridge.checkList();
+		}
+	}
+
+	@EventHandler
+	public void onPlayerEating(PlayerItemConsumeEvent e) {
+		if (e.getItem().getType() == Material.GOLDEN_APPLE) {
+			Player p = e.getPlayer();
+			if (bridge.players.keySet().contains(p)) {
+				if (bridge.getGamePhase() == GamePhase.WAITING || bridge.getGamePhase() == GamePhase.RUNNING) {
+					new BukkitRunnable() {
+						// Quitar la regeneracion y healear al jugador
+						public void run() {
+							plugin.logger.info("El jugador " + p.getName() + "ha comido una manzana de oro");
+
+							p.removePotionEffect(PotionEffectType.REGENERATION);
+							p.removePotionEffect(PotionEffectType.ABSORPTION);
+
+							Utils.heal(p);
+
+							// Dar absortion si es su primera gapple consumida en es avida
+							if (p.getInventory().contains(Material.GOLDEN_APPLE, 7)) {
+								plugin.logger.info("Se dara absortion a " + p.getName());
+								PotionEffect absortion = new PotionEffect(PotionEffectType.ABSORPTION, 1200, 0);
+								p.addPotionEffect(absortion);
+							}
+						}
+					}.runTaskLater(plugin, 2);
+				}
+			}
 		}
 	}
 }

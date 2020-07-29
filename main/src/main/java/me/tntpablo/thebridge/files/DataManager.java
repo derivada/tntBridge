@@ -48,6 +48,7 @@ public class DataManager {
 
 		} catch (Exception e) {
 			// Quizas el nombre del archivo esta mal.
+			// TODO: Attach a logger
 			e.printStackTrace();
 		}
 	}

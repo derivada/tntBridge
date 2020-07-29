@@ -1,6 +1,7 @@
 package me.tntpablo.thebridge;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,7 +31,7 @@ public class BridgeCmd implements CommandExecutor {
 		if (args.length == 0) {
 			Bukkit.broadcastMessage(Utils.pluginMsg("usage"));
 		}
-		if (args.length == 1) {
+		if (args.length >= 1) {
 			switch (args[0].toLowerCase()) {
 				case "join":
 					if (sender instanceof Player) {
@@ -54,6 +55,14 @@ public class BridgeCmd implements CommandExecutor {
 					break;
 				case "start":
 					bridge.attemptStart(true);
+					break;
+				case "soundtest":
+					Player p = (Player) sender;
+					try {
+						p.playSound(p.getLocation(), Sound.valueOf(args[1]), 1f, 1f);
+					} catch (Exception e) {
+						p.sendMessage(Utils.chat("No existe ese sonido!"));
+					}
 					break;
 				default:
 					Bukkit.broadcastMessage(Utils.pluginMsg("usage"));
