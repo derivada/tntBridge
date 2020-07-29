@@ -1,9 +1,10 @@
-me\tntpablo\thebridge\GameState.class
 me\tntpablo\thebridge\BridgeManager.class
 me\tntpablo\thebridge\BridgeCmd.class
 me\tntpablo\thebridge\files\DataManager.class
 me\tntpablo\thebridge\SupressWarnings.class
+me\tntpablo\thebridge\BridgeManager$2.class
 me\tntpablo\thebridge\listeners\BridgeListener.class
+me\tntpablo\thebridge\BridgeUpdate$1.class
 me\tntpablo\thebridge\listeners\BridgeListener$1.class
 me\tntpablo\thebridge\BlockSaver.class
 me\tntpablo\thebridge\BridgeUpdate.class

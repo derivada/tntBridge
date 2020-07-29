@@ -39,16 +39,16 @@ public class Utils {
 
 	public static String timeReminder(int n) {
 
-		if ((n >= 60) && n < 15 && (n % 60 == 0))
+		if ((n > 60) && (n % 60 == 0))
 			// 60, 120, 180...
 			return "&a";
-		else if (n >= 15 && n < 60 && (n % 15 == 0))
+		else if (n > 15 && n <= 60 && (n % 15 == 0))
 			// 45 30 15
 			return "&e";
-		else if (n >= 5 && n<15 && (n % 5 == 0))
+		else if (n > 5 && n<=15 && (n % 5 == 0))
 			// 10 5
 			return "&6";
-		else if (n >= 1 && n < 5)
+		else if (n >= 1 && n <= 5)
 			// 4 3 2 1
 			return "&c";
 		else

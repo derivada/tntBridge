@@ -11,7 +11,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 
 import me.tntpablo.thebridge.BridgeManager;
-import me.tntpablo.thebridge.GameState;
+import me.tntpablo.thebridge.GamePhase;
 import me.tntpablo.thebridge.Main;
 
 public class BlockSaverListener implements Listener {
@@ -27,14 +27,14 @@ public class BlockSaverListener implements Listener {
 
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event) {
-		if (bridge.getGamePhase() == GameState.RUNNING)
+		if (bridge.getGamePhase() == GamePhase.RUNNING)
 			plugin.blockSaver.saveBlock(event.getBlock());
 	}
 
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent event) {
 
-		if (bridge.getGamePhase() == GameState.RUNNING)
+		if (bridge.getGamePhase() == GamePhase.RUNNING)
 			plugin.blockSaver.saveBlock(event.getBlock(), true);
 
 	}
@@ -42,7 +42,7 @@ public class BlockSaverListener implements Listener {
 	// AUN NO FUNCIONA, ES INDIFERENTE PARA BRIDGES
 	@EventHandler
 	public void onExplosion(BlockExplodeEvent event) {
-		if (bridge.getGamePhase() == GameState.RUNNING) {
+		if (bridge.getGamePhase() == GamePhase.RUNNING) {
 			for (Block block : event.blockList()) {
 				plugin.blockSaver.saveBlock(block);
 			}
@@ -51,13 +51,13 @@ public class BlockSaverListener implements Listener {
 
 	@EventHandler
 	public void onBurn(BlockBurnEvent event) {
-		if (bridge.getGamePhase() == GameState.RUNNING)
+		if (bridge.getGamePhase() == GamePhase.RUNNING)
 			plugin.blockSaver.saveBlock(event.getBlock());
 	}
 
 	@EventHandler
 	public void onDecay(LeavesDecayEvent event) {
-		if (bridge.getGamePhase() == GameState.RUNNING)
+		if (bridge.getGamePhase() == GamePhase.RUNNING)
 			plugin.blockSaver.saveBlock(event.getBlock());
 	}
 }

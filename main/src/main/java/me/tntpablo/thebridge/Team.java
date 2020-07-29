@@ -28,10 +28,13 @@ public enum Team {
         this.COLOR = color;
     }
 
+
     public int getID() {
         return ID;
     }
-
+    public int getBlockID(){
+        return 0xf-ID;
+    }
     public ChatColor getChatColor(){
         return CHATCOLOR;
     }

@@ -21,10 +21,10 @@ team2-spawn:
   yaw: -90.0 
   pitch: 0.0
 general-spawn: 
-  x: -21.5 
-  y: 97.0 
-  z: 30.5 
-  yaw: -90.0 
+  x: 0.5
+  y: 102.0
+  z: 0.5 
+  yaw: 0.0
   pitch: 0.0
 
 # Bounding boxes:
