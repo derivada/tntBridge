@@ -49,7 +49,7 @@ public class DataManager {
 		} catch (Exception e) {
 			// Quizas el nombre del archivo esta mal.
 			// TODO: Attach a logger
-			e.printStackTrace();
+			this.plugin.logger.log(Level.SEVERE, "Could not reload config file: " + this.configFile, e);
 		}
 	}
 
@@ -68,7 +68,7 @@ public class DataManager {
 		try {
 			this.getConfig().save(this.configFile);
 		} catch (IOException e) {
-			this.plugin.getLogger().log(Level.SEVERE, "Could not save config to " + this.configFile, e);
+			this.plugin.logger.log(Level.SEVERE, "Could not save config to " + this.configFile, e);
 		}
 
 	}

@@ -1,6 +1,5 @@
 package me.tntpablo.thebridge;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
@@ -15,7 +14,7 @@ public class Main extends JavaPlugin {
 	public Logger logger;
 	public BlockSaver blockSaver;
 	public BlockSaverListener blockSaverListener;
-	
+
 	public DataManager bridgeConfig;
 	public BridgeManager bridgeManager;
 
@@ -25,9 +24,8 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		logger = Bukkit.getLogger();
-		logger.info("CARGANDO PLUGIN TEST TEST TEST MARICON MARICON MARICON");
-		logger.log(Level.SEVERE, "TEST DEL LOGGER NUMERO 2 (SEVERO)");
-		
+		logger.info("[The Bridge] Inicializando plugin...");
+
 		bridgeManager = new BridgeManager(this);
 		bridgeManager.loadConfig();
 
@@ -36,21 +34,26 @@ public class Main extends JavaPlugin {
 		blockSaverListener = new BlockSaverListener(this, bridgeManager);
 		blockSaver = new BlockSaver(this, bridgeManager);
 		auxListener = new BridgeListener(this, bridgeManager);
-
+		logger.info("[The Bridge] Plugin inicializado con exito!");
 	}
 
 	@Override
 	public void onDisable() {
 		// Si se ha parado el plugin, intentar poner los bloques
-		try{
+		logger.info("[The Bridge] Desactivando plugin...");
+
+		try {
 			this.blockSaver.putBlocks();
-		}catch(Exception e){
+		} catch (Exception e) {
+			logger.info("[The Bridge] No hay que poner resetear el puente");
 		}
-		try{
+		try {
 			this.bridgeManager.cageT1.putBlocks();
 			this.bridgeManager.cageT2.putBlocks();
-		}catch(Exception e){
+		} catch (Exception e) {
+			logger.info("[The Bridge] No hay que poner resetear las cajas");
 		}
+		logger.info("[The Bridge] Plugin desactivado!");
 	}
 
 	public void commandManager() {

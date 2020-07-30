@@ -7,7 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class BridgeUpdate extends BukkitRunnable {
 
 	// La clase con operaciones in-game de The Bridge
-	@SupressWarnings("unused")
+
 	private Main plugin;
 	private BridgeManager bridge;
 

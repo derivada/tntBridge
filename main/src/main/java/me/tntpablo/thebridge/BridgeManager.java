@@ -34,7 +34,6 @@ public class BridgeManager {
 	Location bboxCorner1, bboxCorner2;
 	public int countdown = 0, timePassed = 0;
 
-	@SupressWarnings("unused")
 	private BukkitTask task;
 
 	private GamePhase gameState = GamePhase.OFFLINE;
@@ -57,12 +56,11 @@ public class BridgeManager {
 
 		FileConfiguration config = null;
 
-		try{
+		try {
 			plugin.bridgeConfig = new DataManager(plugin, "bridgeconfig.yml");
 			config = plugin.bridgeConfig.getConfig();
-		}
-		catch(NullPointerException e){
-			e.printStackTrace();
+		} catch (NullPointerException e) {
+			this.plugin.logger.log(Level.SEVERE, "No se pudo cargar la configuracion, abortando" + e);
 			return;
 		}
 		// TODO: Aprender a loggear los errores a la consola y mover esto a una clase
@@ -82,7 +80,7 @@ public class BridgeManager {
 			// Bukkit.broadcastMessage(Utils.chat(cageT1.toString()));
 			// Bukkit.broadcastMessage(Utils.chat(cageT2.toString()));
 		} catch (Exception e) {
-			Bukkit.broadcastMessage(Utils.error("No se pudieron cargar las bounding boxes"));
+			this.plugin.logger.log(Level.SEVERE, "[The Bridge] No se pudieron cargar las bounding boxes" + e);
 			e.printStackTrace();
 			return;
 		}
@@ -103,12 +101,12 @@ public class BridgeManager {
 				}
 			}
 			if (t1set == false || t2set == false || team1 == team2) {
-				Bukkit.broadcastMessage(Utils
-						.error("No se pudieron cargar los equipos, equipos duplicados o no presentes en el archivo"));
+				this.plugin.logger.info(Utils.error(
+						"[The Bridge] No se pudieron cargar los equipos, equipos duplicados o no presentes en el archivo"));
 				return;
 			}
 		} catch (NullPointerException e) {
-			Bukkit.broadcastMessage(Utils.error("No se pudieron cargar las los equipos"));
+			this.plugin.logger.log(Level.SEVERE, "[The Bridge] No se pudieron cargar los nombres de los equipos" + e);
 			return;
 		}
 
@@ -129,10 +127,10 @@ public class BridgeManager {
 					config.getDouble("general-spawn.z"), (float) config.getDouble("general-spawn.yaw"),
 					(float) config.getDouble("general-spawn.pitch"));
 		} catch (NullPointerException e) {
-			Bukkit.broadcastMessage(Utils.error("No se pudieron cargar correctamente los spawns!"));
+			this.plugin.logger.log(Level.SEVERE, "[The Bridge] No se pudieron cargar los spawns de los jugadores" + e);
 			return;
 		}
-		Bukkit.broadcastMessage(Utils.chat("&l&aSe ha cargado la configuracion con exito!"));
+		this.plugin.logger.log(Level.INFO, "[The Bridge] La configuracion se ha cargado correctamente!");
 	}
 
 	public void setMaxPlayers(int n) {
@@ -230,7 +228,7 @@ public class BridgeManager {
 		try {
 			plugin.blockSaver.setWorld(world);
 		} catch (NullPointerException e) {
-			Bukkit.broadcastMessage("Error. No se pudo encontrar un mundo");
+			this.plugin.logger.info("[The Bridge] Error, no se pudo encontrar un mundo" + e);
 			return;
 		}
 
